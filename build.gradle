@@ -1,0 +1,48 @@
+group 'be.rafvdl'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+    maven {
+        name 'Sponge maven repo'
+        url 'http://repo.spongepowered.org/maven'
+    }
+    maven {
+        name = 'sonatype-nexus'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+}
+
+
+javadoc {
+    options.encoding = 'UTF-8'
+    options.charSet = 'UTF-8'
+    options.links(
+            'http://www.slf4j.org/apidocs/',
+            'http://docs.guava-libraries.googlecode.com/git-history/v17.0/javadoc/',
+            'http://google.github.io/guice/api-docs/latest/javadoc/',
+            'http://zml2008.github.io/configurate/configurate-core/apidocs/',
+            'http://zml2008.github.io/configurate/configurate-hocon/apidocs/',
+            'http://flowpowered.com/math/',
+            'http://flowpowered.com/noise/',
+            'http://asm.ow2.org/asm50/javadoc/user/',
+            'https://docs.oracle.com/javase/8/docs/api/',
+            'https://jd.spongepowered.org/3.0.0/'
+    )
+
+    // Disable the crazy super-strict doclint tool in Java 8
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+
+dependencies {
+    compile 'org.spongepowered:spongeapi:3.1.0-SNAPSHOT'
+
+    testCompile 'junit:junit:4.12'
+}
